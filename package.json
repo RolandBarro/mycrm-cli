@@ -10,7 +10,7 @@
   },
   "author": "Junrill Galvez",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "cli-color": "^1.2.0",
     "commander": "^2.11.0"
   }

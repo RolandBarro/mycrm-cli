@@ -38,7 +38,7 @@ const info = (message) => {
  * @param {string} message
  */
 const success = (title, message) => {
-  console.log(clc.black.bgGreen(title) + ' ' + clc.blue.bgWhite(message));
+  console.log(clc.black.bgGreen(title) + ' ' + clc.white.bgBlue(message));
 }
 
 /**

@@ -7,6 +7,7 @@ const path = require('path');
 const {validateContext} = require('../utility/validation');
 const {createNewDirective} = require('../module/directive');
 const {createNewController} = require('../module/controller');
+const {createNewService} = require('../module/service');
 
 /**
  * @name generate
@@ -27,7 +28,11 @@ const generate = (type, name, directory) => {
         createNewController(name, directory);
       });
       break;
-
+    case 'service':
+      validateContext(() => {
+        createNewService(name, directory);
+      });
+      break;
   }
 }
 

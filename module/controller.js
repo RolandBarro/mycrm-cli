@@ -1,7 +1,6 @@
-const fs = require('fs');
 const { CONTROLLERS_PATH, CWD } = require('../utility/variable');
-const { alert } = require('../utility/alert');
-const { capitalize, removeSlash } = require('../utility/helper');
+const { renderFile } = require('../utility/renderFile');
+const { capitalize, removeSlash, firstLetterLowerCase } = require('../utility/helper');
 
 
 /**
@@ -10,7 +9,7 @@ const { capitalize, removeSlash } = require('../utility/helper');
  */
 const controllerTemplateJS = (name) => {
   return `
-"use strict";
+'use strict';
 
 app.controller(${name}, ${name});
 
@@ -26,26 +25,14 @@ function ${name}() {
  * @param {string} name
  */
 const createNewController = (name, directory) => {
-  directory = removeSlash(directory); // remove slash in case of user typo
-  const newControllerPath = `${CONTROLLERS_PATH}/${directory}`;
-  const jsTemplate = controllerTemplateJS(name);
-
-  if (!fs.existsSync(newControllerPath)) {
-    fs.mkdir(newControllerPath, () => {
-      // Generate a javascript file
-      fs.writeFile(`${newControllerPath}/${name}.js`, jsTemplate, function (err) {
-        if (err) throw err;
-        alert('success', `${newControllerPath}/${name}.js`, 'File Created:');
-      });
-    });
-  } else {
-    // Generate a javascript file
-    fs.writeFile(`${newControllerPath}/${name}.js`, jsTemplate, function (err) {
-      if (err) throw err;
-      alert('success', `${newControllerPath}/${name}.js`, 'File Created:');
-    });
+  let newControllerPath = `${CONTROLLERS_PATH}`;
+  if(typeof directory !== 'undefined') {
+    directory = removeSlash(directory); // remove slash in case of user typo
+    newControllerPath = `/${directory}`;
   }
-
+  name = firstLetterLowerCase(name); // converts first letter to lower case  
+  const jsTemplate = controllerTemplateJS(name);
+  renderFile(name, newControllerPath, jsTemplate, 'Controller');
 }
 
 

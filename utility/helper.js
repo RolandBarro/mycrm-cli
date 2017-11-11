@@ -7,6 +7,11 @@ const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * @name removeSlash
+ * @description Removes slash appended to string from start or end
+ * @param {string} string 
+ */
 const removeSlash = (string)=> {
   // ending slash
   if (string.charAt(string.length - 1) === '/') {
@@ -21,4 +26,14 @@ const removeSlash = (string)=> {
   return string;
 }
 
-module.exports = { capitalize, removeSlash};
+/**
+ * @name firstLetterLowerCase
+ * @description Convert first letter to lower case in scenario the user type in uppercase first
+ * @param {string} string 
+ * @param {string} checkString 
+ */
+const firstLetterLowerCase = (string) => {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}
+
+module.exports = { capitalize, removeSlash, firstLetterLowerCase};

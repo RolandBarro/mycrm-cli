@@ -7,7 +7,7 @@ program
 
 
 program
-  .command('generate <type> <name> <directory>')
+  .command('generate <type> <name> [directory]')
   .description('Generate a specific file in myCRM')
   .action((type, name, directory) => {
     generate(type,name, directory);
